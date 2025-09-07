@@ -27,6 +27,8 @@ const message = computed(() => {
   return 'Carga tus documentos aqui'
 })
 
+const webhookUrl = import.meta.env.VITE_WEBHOOK_URL as string
+
 function triggerFileInput(): void {
   fileInput.value?.click()
 }
@@ -45,7 +47,7 @@ async function handleFileSelect(e: Event): Promise<void> {
   formData.append('mimetype', file.value.type)
 
   try {
-    await axios.post('https://n8n-lar5.onrender.com/webhook-test/upload-file', formData)
+    await axios.post(`${webhookUrl}/upload-file`, formData)
     alert('Documento cargado exitosamente')
   } catch (err) {
     hasError.value = true

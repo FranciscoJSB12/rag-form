@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="file-input" @click="triggerFileInput">Cargar</button>
+    <button :disabled="isLoading" class="file-input" @click="triggerFileInput">Cargar</button>
     <input ref="fileInput" hidden type="file" @change="handleFileSelect" />
     <p class="description">{{ message }}</p>
   </div>
